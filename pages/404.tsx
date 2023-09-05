@@ -2,7 +2,7 @@
 
 
 
-
+//404画面
 const Custom404 = () => {
     return (
         <div>
