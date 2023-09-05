@@ -17,7 +17,7 @@ export async function getStaticProps(){
   }
 }
 
-
+//home画面
 function Home({allPostData}) {
   return (
     <>
