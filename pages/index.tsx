@@ -18,7 +18,7 @@ export async function getStaticProps(){
 }
 
 
-export default function Home({allPostData}) {
+function Home({allPostData}) {
   return (
     <>
     <Layout home>
@@ -55,3 +55,5 @@ export default function Home({allPostData}) {
     </>
   )
 }
+
+export default Home
