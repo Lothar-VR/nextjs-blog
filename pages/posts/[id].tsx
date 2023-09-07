@@ -41,16 +41,18 @@ function Post({ postData }) {
     const { id } = router.query; // 'id' はファイル名に合わせて変更可能
     
     return (
-        <Layout home={undefined}>
+        <>
             <Head>
                 <title>{postData.title}</title>
             </Head>
-            <article>
-                <h1 className={utilstyles.headingX1} >{postData.title}</h1>
-                <div className={utilstyles.lightText} >{postData.date}</div>
-                <div dangerouslySetInnerHTML={{__html: postData.blogContentsHTML}} />
-            </article>
-        </Layout>
+            <Layout home={undefined}>
+                <article>
+                    <h1 className={utilstyles.headingX1} >{postData.title}</h1>
+                    <div className={utilstyles.lightText} >{postData.date}</div>
+                    <div dangerouslySetInnerHTML={{__html: postData.blogContentsHTML}} />
+                </article>
+            </Layout>
+        </>
     );
 }
 
