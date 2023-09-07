@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Head from 'next/head'
 import Layout from '@/components/Layout'
+import BlogHeader from '@/components/BlogHeader'
 
 
 interface Props {
@@ -16,6 +17,7 @@ const firstpost: NextPage<Props> = () => {
             <Head>
                 <title>最初の投稿</title>
             </Head>
+            <BlogHeader />
             <Layout home={undefined}>
             <h1>first post</h1>
             <Link href={'/'}>HOME</Link>

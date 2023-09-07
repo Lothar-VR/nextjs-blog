@@ -6,6 +6,7 @@ import Layout, { siteTitle } from '@/components/Layout'
 import utilstyles from '../styles/utils.module.css';
 import { getPostData } from '@/lib/post'
 import BlogArticle from '@/components/BlogArticle'
+import BlogHeader from '@/components/BlogHeader'
 
 
 export async function getStaticProps(){
@@ -26,6 +27,7 @@ function Home({allPostData}) {
       <Head>
         <title>{siteTitle}</title>
       </Head>
+      <BlogHeader />
       <Layout home>
         <section className={utilstyles.headingMd} >
           <p>Udemyで勉強してNext.js を用いたブログサイトの作成中です</p>

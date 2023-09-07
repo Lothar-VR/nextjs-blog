@@ -1,3 +1,4 @@
+import BlogHeader from '@/components/BlogHeader';
 import Layout from '@/components/Layout'
 import { getAllPostIds, getPostDataId } from '@/lib/post'
 import { GetStaticPropsContext, NextPage } from 'next';
@@ -45,6 +46,7 @@ function Post({ postData }) {
             <Head>
                 <title>{postData.title}</title>
             </Head>
+            <BlogHeader />
             <Layout home={undefined}>
                 <article>
                     <h1 className={utilstyles.headingX1} >{postData.title}</h1>
