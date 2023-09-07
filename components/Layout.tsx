@@ -4,6 +4,7 @@ import { ReactNode } from 'react';
 import  Styles from './Layout.module.css'; 
 import utilstyles from '../styles/utils.module.css';
 import Link from 'next/link';
+import Box from '@mui/material/Box';
 
 interface Props {
     children: ReactNode;
@@ -14,9 +15,8 @@ interface Props {
 export const siteTitle = "Next.js blog"
 
 const Layout: NextPage<Props> = (props) => {
-    const name ="myblog"
     return (
-        <div className={Styles.container}>
+        <Box className={Styles.container}>
             <Head>
                 <link rel= "icon" href= "/favicon.ico" />
             </Head>
@@ -29,7 +29,7 @@ const Layout: NextPage<Props> = (props) => {
                     width={200}
                     height={200} 
                     />
-                    <h1 className={utilstyles.heading2Xl} >{name}</h1>
+                    <h1 className={utilstyles.heading2Xl} >{siteTitle}</h1>
                     </>
                 ):(
                     <>
@@ -39,7 +39,7 @@ const Layout: NextPage<Props> = (props) => {
                     width={200}
                     height={200} 
                     />
-                    <h1 className={utilstyles.heading2Xl} >{name}</h1>
+                    <h1 className={utilstyles.heading2Xl} >{siteTitle}</h1>
                     </>
 
                 )}
@@ -49,7 +49,7 @@ const Layout: NextPage<Props> = (props) => {
             {!props.home && (
                 <Link href ="/">→ Return home</Link>
             )}
-        </div>
+        </Box>
     )
 }
 

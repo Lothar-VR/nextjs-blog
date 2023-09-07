@@ -13,13 +13,21 @@ body {
   box-sizing: border-box;
 }
 
-a {
+ a {
   color: #0070f3;
   text-decoration: none;
-}
+} 
 
 a:hover {
   text-decoration: underline;
+}
+
+#logo a{
+  color: inherit;
+}
+
+#logo a:hover {
+  text-decoration: none;
 }
 
 img {
