@@ -35,7 +35,7 @@ function Home({allPostData}) {
           <h2 className={utilstyles.headingMd}>私のblog</h2>
           <div className={styles.grid} >
             {allPostData.map(({id, title, date, thumbnail}) => (
-              <BlogArticle key={id} title={title} date={date} thumbnail={thumbnail} />
+              <BlogArticle key={id} id={id} title={title} date={date} thumbnail={thumbnail} />
             ))}
 
           </div>
