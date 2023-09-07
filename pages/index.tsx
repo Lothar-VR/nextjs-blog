@@ -5,7 +5,8 @@ import Link from 'next/link'
 import Layout, { siteTitle } from '@/components/Layout'
 import utilstyles from '../styles/utils.module.css';
 import { getPostData } from '@/lib/post'
-import BlogArticle from '@/components/blogArticle'
+import BlogArticle from '@/components/BlogArticle'
+
 
 export async function getStaticProps(){
   const allPostData = getPostData();
@@ -34,7 +35,7 @@ function Home({allPostData}) {
           <h2 className={utilstyles.headingMd}>私のblog</h2>
           <div className={styles.grid} >
             {allPostData.map(({id, title, date, thumbnail}) => (
-              <BlogArticle id={id} title={title} date={date} thumbnail={thumbnail} />
+              <BlogArticle key={id} title={title} date={date} thumbnail={thumbnail} />
             ))}
 
           </div>

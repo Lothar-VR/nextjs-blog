@@ -5,7 +5,7 @@ import utilstyles from '../styles/utils.module.css';
 import { NextPage } from 'next'
 
 interface Props {
-    id, 
+    key, 
     title, 
     date, 
     thumbnail
@@ -15,11 +15,11 @@ interface Props {
 const BlogArticle: NextPage<Props> = (Props) => {
     return (
         <div>
-            <article key={Props.id}>
-                <Link href={`/posts/${Props.id}`} >
+            <article>
+                <Link href={`/posts/${Props.key}`} >
                     <img src= {`${Props.thumbnail}`} className={styles.thumbnailImage} />
                 </Link>
-                <Link href={`/posts/${Props.id}`} className={utilstyles.boldText} >
+                <Link href={`/posts/${Props.key}`} className={utilstyles.boldText} >
                     {Props.title}
                 </Link>
                 <br/>
