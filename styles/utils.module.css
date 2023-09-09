@@ -63,3 +63,9 @@
     color: #0070f3;
     text-decoration: none;
   }
+
+  .icon{
+    float: right;
+    margin-top: 1rem;
+    margin-bottom: 0;
+  }
