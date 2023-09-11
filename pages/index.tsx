@@ -7,10 +7,17 @@ import utilstyles from '../styles/utils.module.css';
 import { getPostData } from '@/lib/post'
 import BlogArticle from '@/components/BlogArticle'
 import BlogHeader from '@/components/BlogHeader'
+import { type } from 'os'
 
+type AllPostData ={
+  id:string,
+  title: string,
+  date: string,
+  thumbnail: string,
+}
 
 export async function getStaticProps(){
-  const allPostData = getPostData();
+  const allPostData = getPostData() ;
   console.log(allPostData);
 
   return{
@@ -21,7 +28,7 @@ export async function getStaticProps(){
 }
 
 //home画面
-function Home({allPostData}) {
+function Home({allPostData}: {allPostData: AllPostData[]}) {
   return (
     <>
       <Head>
@@ -42,7 +49,7 @@ function Home({allPostData}) {
 
           </div>
         </section>
-        <h1><Link href={"/posts/firstpost"}>blog</Link></h1>
+        <h1><Link href="/posts/firstpost">blog</Link></h1>
       </Layout>
   
     </>

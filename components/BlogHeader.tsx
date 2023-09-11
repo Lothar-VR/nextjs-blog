@@ -16,13 +16,14 @@ const BlogHeader: NextPage<Props> = () => {
             p: 2,
             position: 'fixed',
             width: '100%',
+            zIndex:100,
 
 
         }}>
-            <div id="logo">
-                <Link href={"/"}><h1 className={utilstyles.heading2Xl} >{siteTitle}</h1></Link>
-            </div>
-            <Link href={"/person"} className={utilstyles.icon}>
+            <Box className="logo">
+                <Link href="/" ><h1 className={utilstyles.heading2Xl} >{siteTitle}</h1></Link>
+            </Box>
+            <Link href="/person" className={utilstyles.icon}>
                 <img src='\横顔アイコン.png' width={30} height={30}/>
             </Link>
         </Box>

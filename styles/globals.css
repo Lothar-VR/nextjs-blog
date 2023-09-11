@@ -22,12 +22,12 @@ a:hover {
   text-decoration: underline;
 }
 
-#logo a{
+.logo a{
   color: inherit;
   float: left;
 }
 
-#logo a:hover {
+.logo a:hover {
   text-decoration: none;
 }
 
