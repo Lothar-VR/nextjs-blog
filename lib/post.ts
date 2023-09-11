@@ -5,7 +5,7 @@ import { remark } from "remark";
 import  html  from "remark-html";
 
 
-const postDirectory = path.join(process.cwd(), "posts");
+const postDirectory = path.join(process.cwd(), "public/posts");
 
 
 
@@ -43,12 +43,25 @@ export function getAllPostIds(){
     });
 }
 
+
+export type PostDataId = {
+    id: string;
+    blogContentsHTML: string;
+    title: string;
+    date: string;
+    thumbnail: string;
+};
+
 //IDに基づいてblog投稿データを返す
-export async function getPostDataId(id : string){
+export async function getPostDataId(id : string): Promise<PostDataId>{
     const fullPath = path.join(postDirectory, `${id}.md`);
     const fileContents = fs.readFileSync(fullPath, `utf-8`);
 
     const matterResult = matter(fileContents);
+
+    const title: string = matterResult.data.title;
+    const date: string = matterResult.data.date;
+    const thumbnail: string = matterResult.data.thumbnail;
 
     const blogContents = await remark().use(html).process(matterResult.content);
 
@@ -57,7 +70,9 @@ export async function getPostDataId(id : string){
     return{
         id, 
         blogContentsHTML,
-        ...matterResult.data,
+        title,
+        date,
+        thumbnail
     }
 
 }
