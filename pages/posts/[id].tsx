@@ -4,9 +4,18 @@ import { getAllPostIds, getPostDataId } from '@/lib/post'
 import { GetStaticPropsContext, NextPage } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import utilstyles from 'styles/utils.module.css'
 
 
+//postDataを受け取るための型
+type PostData = {
+    id:string,
+    title:string,
+    date:string,
+    thumbnail:string,
+    blogContentsHTML: string,
+}
 
 //全ての記事のIDを取得
 export function getStaticPaths() {
@@ -21,25 +30,36 @@ export function getStaticPaths() {
 
 export const getStaticProps = async(
     context: GetStaticPropsContext<{id: string}>
-) =>{
-    
-    const postData = await getPostDataId(context.params?.id);
-    console.log(postData);
-    return{
-        props:{
-            postData,
-        }
-    }
+) =>{   
+    const id = context.params?.id;
 
+    if (typeof id === 'string') {
+        const postData = await getPostDataId(id);
+        console.log(postData);
+        return {
+            props: {
+                postData,
+            },
+        };
+    }
 }
 
-
-
-
-
-function Post({ postData }) {
+function Post({ postData }: {postData:PostData}) {
+    // function Post() {
     const router = useRouter();
     const { id } = router.query; // 'id' はファイル名に合わせて変更可能
+
+    // const [postData, setPostData] = useState<PostData[]>([])
+
+    // useEffect(() => {
+    //     fetch(`/posts/${id}`)
+    //         .then((response) => response.json())
+    //         .then((postData:PostData[]) => setPostData(postData))
+
+    //     console.log(postData);
+
+
+    // }, [])
     
     return (
         <>

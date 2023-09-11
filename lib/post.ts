@@ -4,13 +4,15 @@ import matter from "gray-matter";
 import { remark } from "remark";
 import  html  from "remark-html";
 
+
 const postDirectory = path.join(process.cwd(), "posts");
+
 
 
 export function getPostData(){
     const fileNmaes = fs.readdirSync(postDirectory);
-    const allPostData = fileNmaes.map((fileName) =>{
-        const id = fileName.replace(/\.md$/, "");
+    const allPostData  = fileNmaes.map((fileName) =>{
+        const id : string = fileName.replace(/\.md$/, "");
 
         //マークダウンを文字列として読み取る
         const fullPath = path.join(postDirectory, fileName);
@@ -42,7 +44,7 @@ export function getAllPostIds(){
 }
 
 //IDに基づいてblog投稿データを返す
-export async function getPostDataId(id){
+export async function getPostDataId(id : string){
     const fullPath = path.join(postDirectory, `${id}.md`);
     const fileContents = fs.readFileSync(fullPath, `utf-8`);
 
