@@ -10,6 +10,8 @@ import { useEffect, useState } from 'react';
 import { remark } from 'remark';
 import utilstyles from 'styles/utils.module.css'
 import  html  from "remark-html";
+import Link from 'next/link';
+import  Styles from 'components/Layout.module.css'; 
 
 
 //postDataを受け取るための型
@@ -25,10 +27,9 @@ type PostDataId = {
 function Post() {
     //CSRの記法
     const router = useRouter();
-    const { id } = router.query; // 'id' はファイル名に合わせて変更可能
+    const { id, fromHome ='false' } = router.query; 
 
     const [postData, setPostData] = useState<PostDataId>();
-    console.log(2);
 
     useEffect(() => {
 
@@ -56,6 +57,8 @@ function Post() {
           fetchPostData();
     }, [id])
 
+
+
     return (
         <>
             <Head>
@@ -72,7 +75,14 @@ function Post() {
                         <p>データが取得できていません</p>
                     )}
                 </article>
+                {fromHome ==='true' ? (
+                    <Link href ="/" onClick={() => router.back()} >→ Return home</Link>
+                ):(
+                    <Link href ="/" >→ Return home</Link>
+                )}
+                
             </Layout>
+            
         </>
     );
 }

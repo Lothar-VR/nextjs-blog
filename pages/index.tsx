@@ -29,6 +29,8 @@ export async function getStaticProps(){
 
 //home画面
 function Home({allPostData}: {allPostData: AllPostData[]}) {
+
+  
   return (
     <>
       <Head>
@@ -42,12 +44,12 @@ function Home({allPostData}: {allPostData: AllPostData[]}) {
 
         <section >
           <h2 className={utilstyles.headingMd}>私のblog</h2>
-          <div className={styles.grid} >
+        <div className={styles.grid} >
             {allPostData.map(({id, title, date, thumbnail}) => (
               <BlogArticle key={id} id={id} title={title} date={date} thumbnail={thumbnail} />
             ))}
 
-          </div>
+          </div>  
         </section>
         <h1><Link href="/posts/firstpost">blog</Link></h1>
       </Layout>

@@ -1,10 +1,11 @@
 import { NextPage } from 'next'
 import  Head  from 'next/head'
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
 import  Styles from './Layout.module.css'; 
 import utilstyles from '../styles/utils.module.css';
 import Link from 'next/link';
 import Box from '@mui/material/Box';
+import { useRouter } from 'next/router';
 
 interface Props {
     children: ReactNode;
@@ -15,6 +16,8 @@ interface Props {
 export const siteTitle = "Next.js blog"
 
 const Layout: NextPage<Props> = (props) => {
+
+
     return (
         <Box className={Styles.container}>
             <Head>
@@ -46,9 +49,6 @@ const Layout: NextPage<Props> = (props) => {
 
             </header>
             <main>{props.children}</main>
-            {!props.home && (
-                <Link href ="/">→ Return home</Link>
-            )}
         </Box>
     )
 }
