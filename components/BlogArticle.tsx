@@ -17,11 +17,11 @@ interface Props {
 const BlogArticle: NextPage<Props> = (props) => {
     return (
         <Box>
-            <article>
-                <Link href={`/posts/${props.id}/?fromHome=true`}  >
+            <article id={props.id}>
+                <Link href={`/posts/${props.id}`}  >
                     <img src= {`${props.thumbnail}`} className={styles.thumbnailImage} />
                 </Link>
-                <Link href={`/posts/${props.id}/?fromHome=true`} className={utilstyles.boldText}  >
+                <Link href={`/posts/${props.id}`} className={utilstyles.boldText}  >
                     {props.title}
                 </Link>
                 <br/>

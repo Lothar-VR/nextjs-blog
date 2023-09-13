@@ -6,7 +6,7 @@ import { GetStaticPropsContext, NextPage } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import path from 'path';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { remark } from 'remark';
 import utilstyles from 'styles/utils.module.css'
 import  html  from "remark-html";
@@ -27,7 +27,7 @@ type PostDataId = {
 function Post() {
     //CSRの記法
     const router = useRouter();
-    const { id, fromHome ='false' } = router.query; 
+    const { id } = router.query; 
 
     const [postData, setPostData] = useState<PostDataId>();
 
@@ -75,12 +75,7 @@ function Post() {
                         <p>データが取得できていません</p>
                     )}
                 </article>
-                {fromHome ==='true' ? (
-                    <Link href ="/" onClick={() => router.back()} >→ Return home</Link>
-                ):(
-                    <Link href ="/" >→ Return home</Link>
-                )}
-                
+                <Link href ={`/?id=${id}`} >→ Return home</Link>  
             </Layout>
             
         </>
