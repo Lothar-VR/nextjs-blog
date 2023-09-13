@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from '@/styles/Home.module.css'
 import Link from 'next/link'
 import Layout, { siteTitle } from '@/components/Layout'
@@ -7,7 +6,11 @@ import utilstyles from '../styles/utils.module.css';
 import { getPostData } from '@/lib/post'
 import BlogArticle from '@/components/BlogArticle'
 import BlogHeader from '@/components/BlogHeader'
-import { type } from 'os'
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import { useRouter } from 'next/router'
+import { useRef, useState } from 'react'
+import Modal from '@/components/Modal';
 
 type AllPostData ={
   id:string,
@@ -29,6 +32,23 @@ export async function getStaticProps(){
 
 //home画面
 function Home({allPostData}: {allPostData: AllPostData[]}) {
+  const router = useRouter();
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+
+  const { id } = router.query; 
+  if (typeof id === 'string'){
+    const element = document.getElementById(id);
+    element?.scrollIntoView({block:"center"});
+  }  
+
+
   return (
     <>
       <Head>
@@ -41,14 +61,22 @@ function Home({allPostData}: {allPostData: AllPostData[]}) {
         </section>
 
         <section >
-          <h2 className={utilstyles.headingMd}>私のblog</h2>
-          <div className={styles.grid} >
+          <h2 className={utilstyles.headingMd}>私のblog </h2>
+        <div className={styles.grid} >
             {allPostData.map(({id, title, date, thumbnail}) => (
               <BlogArticle key={id} id={id} title={title} date={date} thumbnail={thumbnail} />
             ))}
 
-          </div>
+          </div>  
         </section>
+
+        {/* //モーダル表示ボタン */}
+        <Box >
+          <Button onClick={handleOpen} className={utilstyles.headingMd}>
+            Open Modal
+          </Button>
+          <Modal handleClose={handleClose} open={open} />
+        </Box>
         <h1><Link href="/posts/firstpost">blog</Link></h1>
       </Layout>
   
