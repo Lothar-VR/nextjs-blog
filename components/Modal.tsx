@@ -12,7 +12,6 @@ interface Props {
 const BlogModal: NextPage<Props> = (props:Props) => {
     if(!props.open) return null;
     return (
-        <Box className={utilstyles.overlay} >
             <Modal 
             sx={{
                 position: 'fixed',
@@ -49,7 +48,6 @@ const BlogModal: NextPage<Props> = (props:Props) => {
                     
                 </Box>
             </Modal>
-        </Box>
     )
 }
 
