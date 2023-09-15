@@ -24,6 +24,8 @@ type PostDataId = {
 };
 
 
+
+
 function Post() {
     //CSRの記法
     const router = useRouter();
@@ -31,30 +33,32 @@ function Post() {
 
     const [postData, setPostData] = useState<PostDataId>();
 
-    useEffect(() => {
+ 
 
-        //async await がないと非同期処理なので何も表示されなくなる。
-        const fetchPostData = async () => {
-            if (typeof id === 'string') {
-                const mdPath = `/posts/${id}.md`;
 
-                //fetchする時に「public」フォルダ内にあるものにしかアクセスできない。「src」フォルダの場合fetchなしでアクセス可能
-                const response = await fetch(mdPath);
-                const text = await response.text();
-                const matterResult = matter(text);
-                const blogContentsHTML = await remark().use(html).process(matterResult.content);
-                const postDataId: PostDataId = {
-                    id: id,
-                    blogContentsHTML: blogContentsHTML.toString(),
-                    title: matterResult.data.title,
-                    date: matterResult.data.date,
-                    thumbnail: matterResult.data.thumbnail,
-                };
-                setPostData(postDataId);
+    useEffect(() => {   
+           //async await がないと非同期処理なので何も表示されなくなる。 
+        (async () => {
+            if (id !== undefined) {
+                if(!Array.isArray(id)){
+                    const mdPath = `/posts/${id}.md`;
+
+                    //fetchする時に「public」フォルダ内にあるものにしかアクセスできない。「src」フォルダの場合fetchなしでアクセス可能
+                    const response = await fetch(mdPath);
+                    const text = await response.text();
+                    const matterResult = matter(text);
+                    const blogContentsHTML = await remark().use(html).process(matterResult.content);
+                    const postDataId: PostDataId = {
+                        id: id,
+                        blogContentsHTML: blogContentsHTML.toString(),
+                        title: matterResult.data.title,
+                        date: matterResult.data.date,
+                        thumbnail: matterResult.data.thumbnail,
+                    };
+                    setPostData(postDataId);
+                }
             }
-          };
-      
-          fetchPostData();
+        })()
     }, [id])
 
 
@@ -69,7 +73,7 @@ function Post() {
                 <article>
                     <h1 className={utilstyles.headingX1} >{postData?.title}</h1>
                     <div className={utilstyles.lightText} >{postData?.date}</div>
-                    {typeof postData?.blogContentsHTML === 'string' ? (
+                    {postData !== undefined ? (
                         <div dangerouslySetInnerHTML={{ __html: postData.blogContentsHTML }} />
                     ) : (
                         <p>データが取得できていません</p>

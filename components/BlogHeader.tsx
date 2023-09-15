@@ -3,13 +3,8 @@ import { siteTitle } from './Layout'
 import utilstyles from '../styles/utils.module.css';
 import { Box } from '@mui/material';
 import Link from 'next/link';
-import styles from '@/styles/Home.module.css'
 
-interface Props {
-
-}
-
-const BlogHeader: NextPage<Props> = () => {
+const BlogHeader: NextPage = () => {
     return (
         <Box sx={{
             backgroundColor: 'deepskyblue',
