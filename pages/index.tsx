@@ -9,7 +9,7 @@ import BlogHeader from '@/components/BlogHeader'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import { useRouter } from 'next/router'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Modal from '@/components/Modal';
 
 type AllPostData ={
@@ -42,11 +42,24 @@ function Home({allPostData}: {allPostData: AllPostData[]}) {
   };
 
 
-  const { id } = router.query; 
-  if (typeof id === 'string'){
-    const element = document.getElementById(id);
-    element?.scrollIntoView({block:"center"});
-  }  
+  // const { id } = router.query; 
+  // console.log(id);
+  // if (typeof id === 'string'){
+  //   const element = document.getElementById(id);
+  //   element?.scrollIntoView({block:"center"});
+  // }  
+
+  const articleRef = useRef<HTMLElement>();
+
+  useEffect(() =>{
+    if(articleRef.current !== undefined){
+        articleRef.current.scrollIntoView({block:"center"});
+      }
+  }, [])
+
+
+
+
 
 
   return (
@@ -64,7 +77,9 @@ function Home({allPostData}: {allPostData: AllPostData[]}) {
           <h2 className={utilstyles.headingMd}>私のblog </h2>
         <div className={styles.grid} >
             {allPostData.map(({id, title, date, thumbnail}) => (
-              <BlogArticle key={id} id={id} title={title} date={date} thumbnail={thumbnail} />
+              <Box key={id} ref={id === router.query.id ?articleRef: undefined }>
+              <BlogArticle  id={id} title={title} date={date} thumbnail={thumbnail}/>
+              </Box>
             ))}
 
           </div>  
