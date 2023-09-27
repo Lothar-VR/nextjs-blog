@@ -77,8 +77,9 @@ function Home({allPostData}: {allPostData: AllPostData[]}) {
           <h2 className={utilstyles.headingMd}>私のblog </h2>
         <div className={styles.grid} >
             {allPostData.map(({id, title, date, thumbnail}) => (
-              <Box key={id} ref={id === router.query.id ?articleRef: undefined }>
-              <BlogArticle  id={id} title={title} date={date} thumbnail={thumbnail}/>
+              <Box key={id} ref={id === router.query.id ?articleRef: undefined }
+              sx={{scrollMarginTop: '8rem'}}>
+                <BlogArticle  id={id} title={title} date={date} thumbnail={thumbnail}/>
               </Box>
             ))}
 

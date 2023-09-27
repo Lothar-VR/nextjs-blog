@@ -16,7 +16,7 @@ interface Props {
 
 const BlogArticle: NextPage<Props> = (props) => {
     return (
-        <Box sx={{scrollMarginTop: '8rem'}}>
+        <Box >
             <article id={props.id}>
                 <Link href={`/posts/${props.id}`}  >
                     <img src= {`${props.thumbnail}`} className={styles.thumbnailImage} />
