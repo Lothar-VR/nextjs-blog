@@ -13,7 +13,7 @@ interface Props {
 
 }
 
-export const siteTitle = "Next.js blog"
+export const siteTitle = "Lothar's Station"
 
 const Layout: NextPage<Props> = (props) => {
 
@@ -27,7 +27,7 @@ const Layout: NextPage<Props> = (props) => {
                 {props.home ? (
                     <>
                     <img 
-                    src='\20230805223803.jpg' 
+                    src='\IMG_5740.JPG' 
                     className= {utilstyles.borderCircle}
                     width={200}
                     height={200} 
