@@ -13,7 +13,7 @@ interface Props {
 
 }
 
-export const siteTitle = "Lothar's Station"
+export const siteTitle = "Next.js blog"
 
 const Layout: NextPage<Props> = (props) => {
 
