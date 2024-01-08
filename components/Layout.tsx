@@ -13,16 +13,13 @@ interface Props {
 
 }
 
-export const siteTitle = "Next.js blog"
+export const siteTitle = "Lothar's Home"
 
 const Layout: NextPage<Props> = (props) => {
 
 
     return (
         <Box className={Styles.container}>
-            <Head>
-                <link rel= "icon" href= "/favicon.ico" />
-            </Head>
             <header className= {Styles.header}>
                 {props.home ? (
                     <>

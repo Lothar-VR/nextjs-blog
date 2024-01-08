@@ -11,6 +11,7 @@ import Button from '@mui/material/Button'
 import { useRouter } from 'next/router'
 import { useEffect, useRef, useState } from 'react'
 import Modal from '@/components/Modal';
+import HatenaArticleListController from '@/api/HatenaArticleList/HatenaArticleListController';
 
 type AllPostData ={
   id:string,
@@ -33,14 +34,6 @@ export async function getStaticProps(){
 //home画面
 function Home({allPostData}: {allPostData: AllPostData[]}) {
   const router = useRouter();
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
-
 
   // const { id } = router.query; 
   // console.log(id);
@@ -58,10 +51,6 @@ function Home({allPostData}: {allPostData: AllPostData[]}) {
   }, [])
 
 
-
-
-
-
   return (
     <>
       <Head>
@@ -70,12 +59,12 @@ function Home({allPostData}: {allPostData: AllPostData[]}) {
       <BlogHeader />
       <Layout home>
         <section className={utilstyles.headingMd} >
-          <p>Udemyで勉強してNext.js を用いたブログサイトの作成中です</p>
+          <p>Lotharのホームページ</p>
         </section>
 
         <section >
-          <h2 className={utilstyles.headingMd}>私のblog </h2>
-        <div className={styles.grid} >
+          <h2 className={utilstyles.headingMd}>Contents</h2>
+        {/* <div className={styles.grid} >
             {allPostData.map(({id, title, date, thumbnail}) => (
               <Box key={id} ref={id === router.query.id ?articleRef: undefined }
               sx={{scrollMarginTop: '8rem'}}>
@@ -83,17 +72,8 @@ function Home({allPostData}: {allPostData: AllPostData[]}) {
               </Box>
             ))}
 
-          </div>  
+          </div>   */}
         </section>
-
-        {/* //モーダル表示ボタン */}
-        <Box >
-          <Button onClick={handleOpen} className={utilstyles.headingMd}>
-            Open Modal
-          </Button>
-          <Modal handleClose={handleClose} open={open} />
-        </Box>
-        <h1><Link href="/posts/firstpost">blog</Link></h1>
       </Layout>
   
     </>
