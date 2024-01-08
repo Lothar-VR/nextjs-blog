@@ -77,9 +77,20 @@
     float: right;
     margin-top: 1rem;
     margin-bottom: 0;
+    margin-left: 10px;
   }
 
+  .linkIcon{
+    padding-left: 10px;
+    display: block;
+    float: left;
+    width: 100%; 
+  }
 
+  .link{
+    display: flex;
+    float: left;
+  }
 
   .overlay{
   /*　画面全体を覆う設定　*/

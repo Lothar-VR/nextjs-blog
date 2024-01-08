@@ -15,6 +15,8 @@
     "@types/node": "20.5.7",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
+    "axios": "^1.6.3",
+    "dayjs": "^1.11.10",
     "eslint": "8.48.0",
     "eslint-config-next": "13.4.19",
     "fs": "^0.0.1-security",
@@ -25,10 +27,17 @@
     "matter": "^0.2.0",
     "mui": "^0.0.1",
     "next": "13.4.19",
+    "python": "^0.0.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "remark": "^14.0.3",
     "remark-html": "^15.0.2",
-    "typescript": "5.2.2"
+    "typescript": "5.2.2",
+    "xml2js": "^0.6.2",
+    "xml2json": "^0.12.0"
+  },
+  "devDependencies": {
+    "@types/xml2js": "^0.4.14",
+    "@types/xml2json": "^0.11.6"
   }
 }
