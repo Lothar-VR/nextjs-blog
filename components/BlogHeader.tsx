@@ -16,7 +16,7 @@ const BlogHeader: NextPage = () => {
 
         }}>
             <Box className="logo">
-                <Link href="/" ><h1 className={utilstyles.heading2Xl} >{siteTitle}</h1></Link>
+                <Link href="/" ><h1 className={utilstyles.heading3Xl} >{siteTitle}</h1></Link>
             </Box>
             <Link href="/person" className={utilstyles.icon}>
                 <img src='\横顔アイコン.png' width={40} height={40}/>

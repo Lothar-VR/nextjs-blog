@@ -10,7 +10,6 @@ export default async function hatenaArticleList(
 
         // HatenaArticleListControllerの非同期メソッドを実行
         const responseData = await hatenaArticleListController.getArticle();
-        console.log(JSON.stringify(responseData));
 
         // JSON形式でレスポンスを返す
         res.status(200).json(responseData);
