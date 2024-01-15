@@ -13,7 +13,6 @@ export default async function hatenaArticleList(
 
         // JSON形式でレスポンスを返す
         res.status(200).json(responseData);
-        console.log(responseData);
         } catch (error) {
         console.error('Error in API:', error);
         res.status(500).json({ error: 'Internal Server Error' });

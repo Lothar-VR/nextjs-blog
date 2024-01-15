@@ -4,14 +4,15 @@ import Link from 'next/link'
 import Layout, { siteTitle } from '@/components/Layout'
 import utilstyles from '../styles/utils.module.css';
 import { getPostData } from '@/lib/post'
-import BlogArticle from '@/components/BlogArticle'
 import BlogHeader from '@/components/BlogHeader'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import { useRouter } from 'next/router'
 import { useEffect, useRef, useState } from 'react'
-import Modal from '@/components/Modal';
-import HatenaArticleListController from '@/api/HatenaArticleList/HatenaArticleListController';
+import BlogArticle from '@/components/BlogArticle';
+import { blogData } from '@/hooks/HatenaArticleList/HatenaArticleListService';
+import { useHatenaArticleList } from '@/hooks/HatenaArticleList/useHatenaArticleList';
+
 
 type AllPostData ={
   id:string,
@@ -42,14 +43,23 @@ function Home({allPostData}: {allPostData: AllPostData[]}) {
   //   element?.scrollIntoView({block:"center"});
   // }  
 
+  // はてなブログから記事取得のためのHooks
+  const [hatenagetArticle, setHatenagetArticle] = useState<blogData[]>([]);
+  const hatenaArticleList = useHatenaArticleList();
+  
+
+  
   const articleRef = useRef<HTMLElement>();
 
-  useEffect(() =>{
+  useEffect(() => {
+    
+    if(hatenaArticleList.data !== undefined){
+      setHatenagetArticle(hatenaArticleList.data);
+    }
     if(articleRef.current !== undefined){
-        articleRef.current.scrollIntoView({block:"center"});
-      }
-  }, [])
-
+      articleRef.current.scrollIntoView({block:"center"});
+    }
+  }, [hatenaArticleList.data]);
 
   return (
     <>
@@ -64,15 +74,13 @@ function Home({allPostData}: {allPostData: AllPostData[]}) {
 
         <section >
           <h2 className={utilstyles.headingMd}>Contents</h2>
-        {/* <div className={styles.grid} >
-            {allPostData.map(({id, title, date, thumbnail}) => (
-              <Box key={id} ref={id === router.query.id ?articleRef: undefined }
-              sx={{scrollMarginTop: '8rem'}}>
-                <BlogArticle  id={id} title={title} date={date} thumbnail={thumbnail}/>
+        <div>
+            {hatenagetArticle.map((blogData, index) => (
+              <Box key={index}>
+                <BlogArticle blogData={blogData} index={index}/>
               </Box>
             ))}
-
-          </div>   */}
+          </div>  
         </section>
       </Layout>
   
