@@ -15,7 +15,6 @@ export default class HatenaArticleListRepository {
 
 
     getArticle = async(url: string) => {
-        console.log(apikey, userId, url);
         try{
             if (userId !== undefined && apikey !== undefined){
                 const res = await axios.get(url, {

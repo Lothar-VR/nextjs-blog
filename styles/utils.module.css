@@ -37,6 +37,11 @@
     line-height: 1.5;
     text-align: center;
   }
+
+  .headingR {
+    font-size: 1.2rem;
+    line-height: 1.5;
+  }
   
   .IntroduceTypography {
     font-size: 1.2rem;
