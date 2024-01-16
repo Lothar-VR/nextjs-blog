@@ -1,17 +1,6 @@
 import { AxiosResponse } from "axios";
 import HatenaArticleListRepository from "./HetanaArticleListRepository";
 
-export interface entryData{
-  entry: blogData[] ,
-  err?: Error
-}
-
-export interface blogData{
-  day: string,
-  title: string,
-  href: string
-}
-
 export default class HatenaArticleListService {
     repository: HatenaArticleListRepository;
 

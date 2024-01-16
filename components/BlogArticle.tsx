@@ -1,9 +1,10 @@
-import styles from '@/styles/Home.module.css'
+
 import Link from 'next/link'
 import utilstyles from '../styles/utils.module.css';
 import { NextPage } from 'next'
 import { Box } from '@mui/material';
-import { blogData } from '../hooks/HatenaArticleList/HatenaArticleListService';
+import { blogData } from '@/hooks/HatenaArticleList/useHatenaArticleList';
+
 
 
 interface Props {
@@ -14,15 +15,14 @@ interface Props {
 const BlogArticle: NextPage<Props> = (props) => {
     console.log(`${props.blogData}`);
     return (
-        <Box >
+        <Box border={5} sx ={{borderColor: 'cyan', borderRadius: '10px', margin: 3, paddingLeft: 5, bgcolor: 'aliceblue'}}>
             <article>
                 <Link href={props.blogData.href}  >
-                    <p>{props.blogData.title}</p>
+                    <h3>{props.blogData.title}</h3>
+                    <small className={utilstyles.lightText} >
+                        {props.blogData.day}
+                    </small>
                 </Link>
-                <br/>
-                <small className={utilstyles.lightText} >
-                    {props.blogData.day}
-                </small>
             </article>
         </Box>
     )

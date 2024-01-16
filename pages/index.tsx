@@ -10,8 +10,8 @@ import Button from '@mui/material/Button'
 import { useRouter } from 'next/router'
 import { useEffect, useRef, useState } from 'react'
 import BlogArticle from '@/components/BlogArticle';
-import { blogData } from '@/hooks/HatenaArticleList/HatenaArticleListService';
-import { useHatenaArticleList } from '@/hooks/HatenaArticleList/useHatenaArticleList';
+
+import { blogData, useHatenaArticleList } from '@/hooks/HatenaArticleList/useHatenaArticleList';
 
 
 type AllPostData ={
@@ -44,7 +44,6 @@ function Home({allPostData}: {allPostData: AllPostData[]}) {
   // }  
 
   // はてなブログから記事取得のためのHooks
-  const [hatenagetArticle, setHatenagetArticle] = useState<blogData[]>([]);
   const hatenaArticleList = useHatenaArticleList();
   
 
@@ -52,14 +51,10 @@ function Home({allPostData}: {allPostData: AllPostData[]}) {
   const articleRef = useRef<HTMLElement>();
 
   useEffect(() => {
-    
-    if(hatenaArticleList.data !== undefined){
-      setHatenagetArticle(hatenaArticleList.data);
-    }
     if(articleRef.current !== undefined){
       articleRef.current.scrollIntoView({block:"center"});
     }
-  }, [hatenaArticleList.data]);
+  }, []);
 
   return (
     <>
@@ -75,11 +70,17 @@ function Home({allPostData}: {allPostData: AllPostData[]}) {
         <section >
           <h2 className={utilstyles.headingMd}>Contents</h2>
         <div>
-            {hatenagetArticle.map((blogData, index) => (
-              <Box key={index}>
-                <BlogArticle blogData={blogData} index={index}/>
-              </Box>
-            ))}
+        <h3 className={utilstyles.headingR}>はてなブログ 最新投稿</h3>
+            { hatenaArticleList.data !== null ? (
+              hatenaArticleList.data.map((blogData, index) => (
+                <Box key={index}>
+                  <BlogArticle blogData={blogData} index={index}/>
+                </Box>
+              ))
+            ) : (
+              <h1>Now loading...</h1>
+            )
+            }
           </div>  
         </section>
       </Layout>
